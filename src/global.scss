@@ -1,0 +1,40 @@
+:root {
+  --pink: #d9cdf7;
+  --purple: #271a45;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--pink);
+  color: var(--purple);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100vh;
+}
+
+body,
+input,
+textarea,
+button {
+  font: 400 2rem 'Crimson Pro', serif;
+  line-height: 1;
+}
+
+button {
+  background: inherit;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
