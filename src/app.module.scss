@@ -14,8 +14,6 @@
     width: 50%;
     height: 80%;
 
-    /* align-self: flex-end; */
-
     button {
       position: absolute;
       top: 15%;
@@ -23,6 +21,13 @@
       margin-right: 2rem;
 
       z-index: 1;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
     }
   }
 
@@ -106,6 +111,8 @@
 
   .main {
     flex-direction: column;
+
+    gap: 0rem;
 
     .product {
       width: 100%;

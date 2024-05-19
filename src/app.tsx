@@ -12,6 +12,8 @@ import { Model as Sofa } from './components/Sofa'
 import styles from './app.module.scss'
 import { Orbit } from './components/Orbit'
 
+import SofaImage from '/sofa.png'
+
 extend({ Mesh, BoxGeometry, MeshStandardMaterial, Group })
 
 function App() {
@@ -25,35 +27,34 @@ function App() {
     setIsRotationActive(!isRotationActive)
   }
 
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!isTapping || !isRotationActive) return
+    mouseX.set(mouseX.get() + e.movementX)
+  }
+
+  const sectionStyle = {
+    cursor: !isRotationActive ? 'default' : isTapping ? 'grabbing' : 'grab',
+  }
+
   return (
     <main className={styles.main}>
       <motion.section
         className={styles.product}
-        style={{
-          cursor: !isRotationActive
-            ? 'default'
-            : isTapping
-            ? 'grabbing'
-            : 'grab',
-        }}
+        style={sectionStyle}
         onTapStart={() => setIsPress(true)}
         onTap={() => setIsPress(false)}
         onTapCancel={() => setIsPress(false)}
-        onPointerMove={(e) => {
-          if (!isTapping || !isRotationActive) return
-
-          mouseX.set(mouseX.get() + e.movementX)
-        }}
+        onPointerMove={onPointerMove}
       >
-        <button onClick={onChangeRotationActive}>
-          {isRotationActive ? (
-            <CloseIcon size={32} />
-          ) : (
-            <RotationIcon size={64} />
-          )}
-        </button>
+        <Suspense fallback={<img src={SofaImage} alt="loading" />}>
+          <button onClick={onChangeRotationActive}>
+            {isRotationActive ? (
+              <CloseIcon size={32} />
+            ) : (
+              <RotationIcon size={64} />
+            )}
+          </button>
 
-        <Suspense fallback={null}>
           <Canvas dpr={[1, 2]} resize={{ scroll: false, offsetSize: true }}>
             <Sofa mouseX={mouseX} />
             <ambientLight intensity={1.5} />
