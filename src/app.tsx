@@ -1,7 +1,6 @@
 import { Suspense, useState } from 'react'
 import { Mesh, BoxGeometry, MeshStandardMaterial, Group } from 'three'
 import { useMotionValue, motion } from 'framer-motion'
-import DocumentMeta from 'react-document-meta'
 
 import { Canvas, extend } from '@react-three/fiber'
 import { Environment, PerspectiveCamera } from '@react-three/drei'
@@ -9,12 +8,12 @@ import { Environment, PerspectiveCamera } from '@react-three/drei'
 import { RotationIcon } from './components/RotationIcon'
 import { CloseIcon } from './components/CloseIcon'
 
+import SofaImage from '/sofa.png'
+
 import { Model as Sofa } from './components/Sofa'
 import styles from './app.module.scss'
 import { Orbit } from './components/Orbit'
-
-import SofaImage from '/sofa.png'
-import { meta } from './SEO'
+import { SEO } from './SEO'
 
 extend({ Mesh, BoxGeometry, MeshStandardMaterial, Group })
 
@@ -39,7 +38,8 @@ function App() {
   }
 
   return (
-    <DocumentMeta {...meta}>
+    <>
+      <SEO />
       <main className={styles.main}>
         <motion.section
           className={styles.product}
@@ -77,7 +77,7 @@ function App() {
           <button>Adicionar à cesta</button>
         </div>
       </main>
-    </DocumentMeta>
+    </>
   )
 }
 
